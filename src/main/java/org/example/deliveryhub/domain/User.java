@@ -50,4 +50,10 @@ public class User {
 
   @Column(name="updated_at")
   private LocalDateTime updatedAt;
+
+  @OneToMany(mappedBy = "user")
+  private List<Order> orderList;
+
+  @OneToMany(mappedBy = "user")
+  private List<Review> reviewList;
 }

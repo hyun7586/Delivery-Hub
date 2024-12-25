@@ -55,4 +55,7 @@ public class Order {
   @Column(name="location")
   private String location;
 
+  @OneToMany(mappedBy = "order")
+  private List<OrderItem> orderItemList;
+
 }
