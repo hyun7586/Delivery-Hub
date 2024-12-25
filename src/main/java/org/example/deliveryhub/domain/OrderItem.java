@@ -44,5 +44,4 @@ public class OrderItem {
   @Column(name="price")
   private int price;
 
-
 }

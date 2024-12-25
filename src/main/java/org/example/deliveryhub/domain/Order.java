@@ -55,7 +55,7 @@ public class Order {
   @Column(name="location")
   private String location;
 
-  @OneToMany(mappedBy = "order")
+  @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<OrderItem> orderItemList;
 
 }

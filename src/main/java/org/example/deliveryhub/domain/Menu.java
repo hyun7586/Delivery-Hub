@@ -3,6 +3,7 @@ package org.example.deliveryhub.domain;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -52,7 +53,7 @@ public class Menu {
   @Column(name="updated_at")
   private LocalDateTime updatedAt;
 
-  @OneToMany(mappedBy = "menu")
+  @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<OrderItem> orderItemList;
 
 }
