@@ -1,4 +1,4 @@
-package org.example.deliveryhub.domain;
+package org.example.deliveryhub.domain.menu.entity;
 
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -19,6 +19,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.deliveryhub.domain.orderitem.entity.OrderItem;
+import org.example.deliveryhub.domain.restaurant.entity.Restaurant;
 
 @Entity(name = "menu")
 @Getter
