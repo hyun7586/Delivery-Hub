@@ -1,4 +1,4 @@
-package org.example.deliveryhub.domain;
+package org.example.deliveryhub.domain.order.entity;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -18,6 +18,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.deliveryhub.domain.orderitem.entity.OrderItem;
+import org.example.deliveryhub.domain.restaurant.entity.Restaurant;
+import org.example.deliveryhub.domain.user.entity.User;
 
 @Entity(name = "order")
 @Getter

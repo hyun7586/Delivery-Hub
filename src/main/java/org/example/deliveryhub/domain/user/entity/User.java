@@ -1,4 +1,4 @@
-package org.example.deliveryhub.domain;
+package org.example.deliveryhub.domain.user.entity;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,7 +16,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.context.event.SmartApplicationListener;
+import org.example.deliveryhub.domain.order.entity.Order;
+import org.example.deliveryhub.domain.review.entity.Review;
 
 @Entity(name = "user")
 @Getter
