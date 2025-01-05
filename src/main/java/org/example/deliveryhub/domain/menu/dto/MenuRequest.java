@@ -25,6 +25,5 @@ public class MenuRequest {
   private String name;
   private String description;
   private Integer price;
-  private List<OrderItem> orderItemList;
 
 }
