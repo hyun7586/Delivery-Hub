@@ -47,7 +47,7 @@ public class Order {
   private String status;
 
   @Column(name="total_price")
-  private int totalPrice;
+  private Integer totalPrice;
 
   @Column(name="created_at")
   private LocalDateTime createdAt;
