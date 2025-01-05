@@ -53,7 +53,6 @@ public class MenuService {
         .restaurant(request.getRestaurant())
         .createdAt(LocalDateTime.now())
         .updatedAt(LocalDateTime.now())
-        .orderItemList(request.getOrderItemList())
         .build());
 
     return MenuResponse.builder()
@@ -77,7 +76,6 @@ public class MenuService {
     if(request.getName()!=null) target.setName(request.getName());
     if(request.getDescription()!=null)  target.setDescription(request.getDescription());
     if(request.getPrice()!=null)  target.setPrice(request.getPrice());
-    if(request.getOrderItemList()!=null)  target.setOrderItemList(request.getOrderItemList());
 
     Menu result = menuRepository.save(target);
 
