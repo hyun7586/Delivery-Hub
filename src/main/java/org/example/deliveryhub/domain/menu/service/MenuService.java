@@ -1,5 +1,6 @@
 package org.example.deliveryhub.domain.menu.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.deliveryhub.domain.menu.dto.MenuRequest;
@@ -41,6 +42,25 @@ public class MenuService {
             .price(each.getPrice())
             .build())
         .toList();
+  }
+
+  // 메뉴 추가
+  public MenuResponse createMenu(MenuRequest request){
+    Menu saved = menuRepository.save(Menu.builder()
+        .name(request.getName())
+        .description(request.getDescription())
+        .price(request.getPrice())
+        .restaurant(request.getRestaurant())
+        .createdAt(LocalDateTime.now())
+        .updatedAt(LocalDateTime.now())
+        .orderItemList(request.getOrderItemList())
+        .build());
+
+    return MenuResponse.builder()
+        .name(saved.getName())
+        .description(saved.getDescription())
+        .price(saved.getPrice())
+        .build();
   }
 
   // 특정 메뉴 정보 수정

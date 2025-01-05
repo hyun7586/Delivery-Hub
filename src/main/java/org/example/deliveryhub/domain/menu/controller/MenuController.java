@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.deliveryhub.domain.menu.dto.MenuRequest;
 import org.example.deliveryhub.domain.menu.dto.MenuResponse;
+import org.example.deliveryhub.domain.menu.entity.Menu;
 import org.example.deliveryhub.domain.menu.service.MenuService;
 import org.example.deliveryhub.global.ResponseApi;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,6 +54,22 @@ public class MenuController {
             .data(responseData)
             .build());
   }
+
+  // 메뉴 추가
+  @PostMapping("/")
+  public ResponseEntity<ResponseApi<MenuResponse>> createMenu(
+      @RequestBody MenuRequest request
+  ){
+    MenuResponse responseData = menuService.createMenu(request);
+
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(ResponseApi.<MenuResponse>builder()
+            .statusCode("200")
+            .message("the data is created")
+            .data(responseData)
+            .build());
+  }
+
 
   // 특정 메뉴 정보 수정
   @PatchMapping("/{menu_id}")

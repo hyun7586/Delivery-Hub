@@ -1,5 +1,7 @@
 package org.example.deliveryhub.domain.menu.dto;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +18,7 @@ import org.example.deliveryhub.domain.restaurant.entity.Restaurant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class MenuRequest {
 
   private Restaurant restaurant;
