@@ -21,7 +21,7 @@ public class MenuRequest {
   private Restaurant restaurant;
   private String name;
   private String description;
-  private int price;
+  private Integer price;
   private List<OrderItem> orderItemList;
 
 }
