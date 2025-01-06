@@ -30,7 +30,7 @@ public class RestaurantService {
   }
 
   // 식당 메뉴 리스트 조회
-  public List<MenuResponse> findAll(Long restaurantId){
+  public List<MenuResponse> findAllMenu(Long restaurantId){
     Restaurant restaurant = restaurantRepository.findById(restaurantId).orElse(null);
 
     // 이후 throw exception으로 처리
@@ -42,6 +42,13 @@ public class RestaurantService {
             .description(each.getDescription())
             .price(each.getPrice())
             .build())
+        .toList();
+  }
+
+  // 식당 리스트 조회
+  public List<RestaurantResponse> findAll(){
+    return restaurantRepository.findAll().stream()
+        .map(restaurantMapper::toResponse)
         .toList();
   }
 
