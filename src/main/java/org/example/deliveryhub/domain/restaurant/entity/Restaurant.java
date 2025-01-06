@@ -36,6 +36,7 @@ public class Restaurant {
   @Column(name="restaurant_id")
   private Long id;
 
+  // restaurant owner
   @ManyToOne
   @JoinColumn(name="user_id")
   private User user;
