@@ -54,7 +54,18 @@ public class RestaurantController {
         .body(ResponseApi.<List<MenuResponse>>builder()
             .statusCode("200")
             .message("the data is found")
-            .data(restaurantService.findAll(restaurantId))
+            .data(restaurantService.findAllMenu(restaurantId))
+            .build());
+  }
+
+  // 식당 목록 조회
+  @GetMapping("/all")
+  public ResponseEntity<ResponseApi<List<RestaurantResponse>>> getRestaurantList(){
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(ResponseApi.<List<RestaurantResponse>>builder()
+            .statusCode("200")
+            .message("the data is found")
+            .data(restaurantService.findAll())
             .build());
   }
 
