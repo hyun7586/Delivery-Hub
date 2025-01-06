@@ -4,6 +4,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.example.deliveryhub.domain.restaurant.dto.RestaurantResponse;
 import org.example.deliveryhub.domain.restaurant.entity.Restaurant;
+import org.example.deliveryhub.domain.restaurant.mapper.RestaurantMapper;
 import org.example.deliveryhub.domain.restaurant.repository.RestaurantRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class RestaurantService {
 
   private final RestaurantRepository restaurantRepository;
+  private final RestaurantMapper restaurantMapper;
 
   // 식당 정보 조회
   public RestaurantResponse findById(Long restaurantId){
@@ -19,13 +21,7 @@ public class RestaurantService {
 
     if(restaurant==null)  return null;
 
-    return RestaurantResponse.builder()
-        .user(restaurant.getUser())
-        .name(restaurant.getName())
-        .location(restaurant.getLocation())
-        .orderList(restaurant.getOrderList())
-        .menuList(restaurant.getMenuList())
-        .build();
+    return restaurantMapper.toResponse(restaurant);
   }
 
 }
