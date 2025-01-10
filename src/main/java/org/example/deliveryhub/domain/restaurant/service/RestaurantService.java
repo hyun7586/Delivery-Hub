@@ -3,6 +3,7 @@ package org.example.deliveryhub.domain.restaurant.service;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.deliveryhub.domain.menu.dto.MenuResponse;
+import org.example.deliveryhub.domain.menu.entity.Menu;
 import org.example.deliveryhub.domain.menu.repository.MenuRepository;
 import org.example.deliveryhub.domain.restaurant.dto.RestaurantRequest;
 import org.example.deliveryhub.domain.restaurant.dto.RestaurantResponse;
@@ -67,5 +68,24 @@ public class RestaurantService {
     restaurant.getMenuList().addAll(request.getMenuList());
 
     return restaurantMapper.toResponse(restaurantRepository.save(restaurant));
+  }
+
+  // 특정 식당 특정 메뉴 삭제
+  public RestaurantResponse deleteMenu(Long restaurantId, Long menuId){
+    Restaurant restaurant = restaurantRepository.findById(restaurantId).orElse(null);
+
+    if(restaurant==null)  return null;
+
+    Menu target = restaurant.getMenuList().stream()
+        .filter(each->each.getId().equals(menuId))
+        .findFirst()
+        .orElse(null);
+
+    if(target==null)  return null;
+
+    restaurant.getMenuList().remove(target);
+    Restaurant saved = restaurantRepository.save(restaurant);
+
+    return restaurantMapper.toResponse(saved);
   }
 }

@@ -11,6 +11,7 @@ import org.example.deliveryhub.global.ResponseApi;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -84,6 +85,31 @@ public class RestaurantController {
         .body(ResponseApi.<RestaurantResponse>builder()
             .statusCode("200")
             .message("the modification is completed")
+            .data(responseData)
+            .build());
+  }
+
+  // 특정 식당 특정 메뉴 삭제
+  @DeleteMapping("/{restaurant_id}/{menu_id}")
+  public ResponseEntity<ResponseApi<?>> deleteRestaurantMenu(
+      @PathVariable(name="restaurant_id") Long restaurantId,
+      @PathVariable(name="menu_id") Long menuId
+  ){
+    RestaurantResponse responseData = restaurantService.deleteMenu(restaurantId, menuId);
+
+    if(responseData==null){
+      return ResponseEntity.status(HttpStatus.NOT_FOUND)
+          .body(ResponseApi.builder()
+              .statusCode("404")
+              .message("the data is not found")
+              .data(null)
+              .build());
+    }
+
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(ResponseApi.<RestaurantResponse>builder()
+            .statusCode("200")
+            .message("the deletion complete")
             .data(responseData)
             .build());
   }
